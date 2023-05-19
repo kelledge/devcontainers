@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: dev
+    command: sleep infinity
+    stop_grace_period: 1s
+    stop_signal: "SIGKILL"
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - extensions:/root/.vscode-server/extensions
+      - gocache:/go/pkg/mod
+
+volumes:
+  extensions:
+  gocache:
